@@ -1,0 +1,28 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Firebase Hosting cache
+.firebase/
+
+# Legacy static site files (superseded by React app in src/)
+css/
+js/
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Editor & OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Misc
+*.local
+.cache/

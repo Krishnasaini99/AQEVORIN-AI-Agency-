@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#04202e"/><stop offset="1" stop-color="#0a4a5e"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#0891b2"/><stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <radialGradient id="glow3" cx="0.5" cy="0.4" r="0.6">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.25"/><stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect width="800" height="450" fill="url(#glow3)"/>
+  <!-- bar chart -->
+  <g>
+    <rect x="150" y="240" width="60" height="120" rx="6" fill="url(#bar)" opacity="0.85"/>
+    <rect x="240" y="190" width="60" height="170" rx="6" fill="url(#bar)" opacity="0.9"/>
+    <rect x="330" y="140" width="60" height="220" rx="6" fill="url(#bar)"/>
+    <rect x="420" y="180" width="60" height="180" rx="6" fill="url(#bar)" opacity="0.9"/>
+    <rect x="510" y="110" width="60" height="250" rx="6" fill="url(#bar)"/>
+    <rect x="600" y="160" width="60" height="200" rx="6" fill="url(#bar)" opacity="0.85"/>
+  </g>
+  <!-- trend line -->
+  <path d="M180 220 L270 170 L360 120 L450 160 L540 90 L630 140" stroke="#a855f7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <g fill="#a855f7">
+    <circle cx="180" cy="220" r="6"/><circle cx="270" cy="170" r="6"/><circle cx="360" cy="120" r="6"/>
+    <circle cx="450" cy="160" r="6"/><circle cx="540" cy="90" r="6"/><circle cx="630" cy="140" r="6"/>
+  </g>
+  <!-- axis -->
+  <path d="M120 370 H690" stroke="#22d3ee" stroke-opacity="0.4" stroke-width="2"/>
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#fff" letter-spacing="2">DATA SCIENCE &amp; ANALYTICS</text>
+</svg>

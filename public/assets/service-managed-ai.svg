@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="800" y2="450" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#2e1a05"/><stop offset="1" stop-color="#5e3a0d"/>
+    </linearGradient>
+    <linearGradient id="g6" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#d97706"/>
+    </linearGradient>
+    <radialGradient id="glow6" cx="0.5" cy="0.45" r="0.6">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.28"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  <rect width="800" height="450" fill="url(#glow6)"/>
+  <!-- dashboard -->
+  <rect x="140" y="90" width="520" height="280" rx="20" fill="#1c1206" stroke="#fbbf24" stroke-opacity="0.4" stroke-width="2"/>
+  <rect x="140" y="90" width="520" height="46" rx="20" fill="#fbbf24" fill-opacity="0.12"/>
+  <circle cx="170" cy="113" r="6" fill="#f87171"/><circle cx="192" cy="113" r="6" fill="#fbbf24"/><circle cx="214" cy="113" r="6" fill="#34d399"/>
+  <!-- monitor line chart -->
+  <path d="M180 300 L260 260 L340 280 L420 220 L500 240 L580 180" stroke="url(#g6)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <g fill="#fbbf24">
+    <circle cx="180" cy="300" r="5"/><circle cx="260" cy="260" r="5"/><circle cx="340" cy="280" r="5"/>
+    <circle cx="420" cy="220" r="5"/><circle cx="500" cy="240" r="5"/><circle cx="580" cy="180" r="5"/>
+  </g>
+  <!-- status cards -->
+  <g font-family="Arial, sans-serif" font-size="13" font-weight="600">
+    <rect x="180" y="160" width="120" height="50" rx="10" fill="#fbbf24" fill-opacity="0.1"/>
+    <text x="240" y="190" text-anchor="middle" fill="#fbbf24">UPTIME 99.9%</text>
+    <rect x="330" y="160" width="120" height="50" rx="10" fill="#34d399" fill-opacity="0.1"/>
+    <text x="390" y="190" text-anchor="middle" fill="#34d399">HEALTHY</text>
+    <rect x="480" y="160" width="120" height="50" rx="10" fill="#22d3ee" fill-opacity="0.1"/>
+    <text x="540" y="190" text-anchor="middle" fill="#22d3ee">MONITORED</text>
+  </g>
+  <text x="400" y="420" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#fff" letter-spacing="2">MANAGED AI SERVICES</text>
+</svg>
