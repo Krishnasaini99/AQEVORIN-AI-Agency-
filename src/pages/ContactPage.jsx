@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import SocialLinks from '../components/SocialLinks.jsx'
 import { useSection } from '../context/ContentContext.jsx'
+import { usePageSeo } from '../lib/seo.js'
 
 const serviceOptions = [
   'AI Consulting',
@@ -60,6 +61,11 @@ function ChoiceGroup({ label, number, options, value, onChange }) {
 export default function ContactPage() {
   const contact = useSection('contact')
   const contactHero = contact.hero || {}
+  usePageSeo({
+    title: 'Contact Us — Start a Project | AQEVORIN AI Agency',
+    description: 'Tell us what you want to build. Share your business goal and budget — we respond within 24 hours with the most practical next step.',
+    path: '#/contact',
+  })
   const [step, setStep] = useState(1)
   const [answers, setAnswers] = useState({ service: '', stage: '', budget: '', timeline: '' })
   const [details, setDetails] = useState({ name: '', email: '', phone: '', company: '', message: '' })

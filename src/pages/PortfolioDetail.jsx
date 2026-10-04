@@ -1,11 +1,17 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
 import { useSection } from '../context/ContentContext.jsx'
+import { usePageSeo } from '../lib/seo.js'
 
 export default function PortfolioDetail({ slug }) {
   const { projects } = useSection('portfolio')
   const contact = useSection('contact')
   const project = projects.find(p => p.slug === slug)
+  usePageSeo({
+    title: project ? `${project.title} | AQEVORIN AI Agency Work` : 'Project not found | AQEVORIN AI Agency',
+    description: project?.excerpt,
+    path: `#/portfolio/${slug}`,
+  })
 
   if (!project) {
     return (

@@ -1,11 +1,17 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
 import { useSection } from '../context/ContentContext.jsx'
+import { usePageSeo } from '../lib/seo.js'
 
 export default function BlogDetail({ slug }) {
   const { posts } = useSection('blog')
   const contact = useSection('contact')
   const post = posts.find(p => p.slug === slug)
+  usePageSeo({
+    title: post ? `${post.title} | AQEVORIN AI Agency Blog` : 'Article not found | AQEVORIN AI Agency',
+    description: post?.excerpt,
+    path: `#/blog/${slug}`,
+  })
 
   if (!post) {
     return (

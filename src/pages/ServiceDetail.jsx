@@ -1,11 +1,17 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
 import { useSection } from '../context/ContentContext.jsx'
+import { usePageSeo } from '../lib/seo.js'
 
 export default function ServiceDetail({ slug }) {
   const { services } = useSection('services')
   const contact = useSection('contact')
   const service = services.find(s => s.slug === slug)
+  usePageSeo({
+    title: service ? `${service.title} | AQEVORIN AI Agency` : 'Service not found | AQEVORIN AI Agency',
+    description: service?.tagline,
+    path: `#/services/${slug}`,
+  })
 
   if (!service) {
     return (
