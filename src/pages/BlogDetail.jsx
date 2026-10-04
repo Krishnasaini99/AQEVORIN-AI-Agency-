@@ -1,9 +1,11 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
-import { getPostBySlug, posts } from '../data/blog.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function BlogDetail({ slug }) {
-  const post = getPostBySlug(slug)
+  const { posts } = useSection('blog')
+  const contact = useSection('contact')
+  const post = posts.find(p => p.slug === slug)
 
   if (!post) {
     return (
@@ -66,7 +68,7 @@ export default function BlogDetail({ slug }) {
               <h3>Get started</h3>
               <p>Have a project inspired by this? Let's discuss it.</p>
               <a href="#/contact" className="btn btn-primary btn-full">Start a Project</a>
-              <a href="mailto:hello@aqevorin.ai" className="sidebar-link">hello@aqevorin.ai</a>
+              <a href={'mailto:' + contact.email} className="sidebar-link">{contact.email}</a>
             </div>
             <div className="sidebar-card">
               <h3>More articles</h3>

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useTheme } from '../context/ThemeContext.jsx'
+import { useSection } from '../context/ContentContext.jsx'
 
 function Counter({ target }) {
   const [value, setValue] = useState(0)
@@ -33,16 +33,10 @@ function Counter({ target }) {
   return <span ref={ref}>{value}</span>
 }
 
-const stats = [
-  { target: 120, suffix: '', label: 'Projects Delivered' },
-  { target: 95, suffix: '%', label: 'Client Satisfaction' },
-  { target: 40, suffix: '+', label: 'Expert Agents' },
-  { target: 8, suffix: '+', label: 'Years Experience' },
-]
-
 export default function Hero() {
   const videoRef = useRef(null)
-  const { theme } = useTheme()
+  const { hero } = useSection('home')
+  const stats = hero.stats || []
 
   useEffect(() => {
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
@@ -55,13 +49,13 @@ export default function Hero() {
     apply()
     mq.addEventListener('change', apply)
     return () => mq.removeEventListener('change', apply)
-  }, [theme])
+  }, [])
 
   return (
     <section className="hero">
       <div className="hero-video-wrap" aria-hidden="true">
-        <video key={theme} ref={videoRef} className="hero-video" autoPlay muted loop playsInline preload="auto">
-          <source src={theme === 'light' ? '/assets/hero-loop-light.mp4' : '/assets/hero-loop-dark.mp4'} type="video/mp4" />
+        <video ref={videoRef} className="hero-video" autoPlay muted loop playsInline preload="auto">
+          <source src={hero.video || '/assets/hero-loop.mp4'} type="video/mp4" />
         </video>
       </div>
       <div className="hero-bg" aria-hidden="true">
@@ -71,12 +65,12 @@ export default function Hero() {
         <div className="grid-overlay"></div>
       </div>
       <div className="container hero-content">
-        <span className="badge reveal">AI Agency · Creative Agents · Digital Growth</span>
-        <h1 className="hero-title reveal">Intelligence That<br /><span className="gradient-text">Moves Business Forward.</span></h1>
-        <p className="hero-sub reveal">We build AI systems, creative agents, and digital growth engines — strategy, design, video, and marketing — everything your business needs to scale, under one roof.</p>
+        <span className="badge reveal">{hero.badge}</span>
+        <h1 className="hero-title reveal">{hero.title}<br /><span className="gradient-text">{hero.titleAccent}</span></h1>
+        <p className="hero-sub reveal">{hero.sub}</p>
         <div className="hero-actions reveal">
-          <a href="#contact" className="btn btn-primary btn-lg">Start Your Project</a>
-          <a href="#services" className="btn btn-ghost btn-lg">Explore Services</a>
+          <a href={hero.primary?.href || '#contact'} className="btn btn-primary btn-lg">{hero.primary?.label}</a>
+          <a href={hero.secondary?.href || '#services'} className="btn btn-ghost btn-lg">{hero.secondary?.label}</a>
         </div>
         <div className="hero-stats reveal">
           {stats.map(s => (

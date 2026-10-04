@@ -1,6 +1,7 @@
-import { posts } from '../data/blog.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function Blog() {
+  const { posts } = useSection('blog')
   return (
     <section className="section section-alt" id="blog">
       <div className="container">

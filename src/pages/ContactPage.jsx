@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import SocialLinks from '../components/SocialLinks.jsx'
+import { useSection } from '../context/ContentContext.jsx'
 
 const serviceOptions = [
   'AI Consulting',
@@ -57,6 +58,8 @@ function ChoiceGroup({ label, number, options, value, onChange }) {
 }
 
 export default function ContactPage() {
+  const contact = useSection('contact')
+  const contactHero = contact.hero || {}
   const [step, setStep] = useState(1)
   const [answers, setAnswers] = useState({ service: '', stage: '', budget: '', timeline: '' })
   const [details, setDetails] = useState({ name: '', email: '', phone: '', company: '', message: '' })
@@ -100,14 +103,13 @@ export default function ContactPage() {
           <div className="grid-overlay"></div>
         </div>
         <div className="container contact-hero-content">
-          <span className="section-tag">Start a Project</span>
-          <h1 className="section-title">Tell us what you want to <span className="gradient-text">build.</span></h1>
-          <p className="section-sub">Share your business goal, current process, and approximate budget. We'll review the requirement and suggest the most practical next step.</p>
+          <span className="section-tag">{contactHero.tag}</span>
+          <h1 className="section-title">{contactHero.title}<span className="gradient-text">{contactHero.titleAccent}</span></h1>
+          <p className="section-sub">{contactHero.sub}</p>
           <div className="contact-pills">
-            <span className="contact-pill">AI, design, marketing &amp; video projects</span>
-            <span className="contact-pill">No technical jargon</span>
-            <span className="contact-pill">Response within 24 hours</span>
-            <span className="contact-pill">Built for serious project discussions</span>
+            {(contactHero.pills || []).map(p => (
+              <span className="contact-pill" key={p}>{p}</span>
+            ))}
           </div>
         </div>
       </section>
@@ -194,8 +196,8 @@ export default function ContactPage() {
             </div>
             <div className="next-contact">
               <h4>Prefer direct contact?</h4>
-              <a href="mailto:hello@aqevorin.ai">hello@aqevorin.ai</a>
-              <a href="tel:+919876543210">+91 98765 43210</a>
+              <a href={'mailto:' + contact.email}>{contact.email}</a>
+              <a href={'tel:' + contact.phone.replace(/\s/g, '')}>{contact.phone}</a>
               <span>India · Remote Worldwide</span>
               <div className="next-social">
                 <h5>Connect on social</h5>

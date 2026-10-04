@@ -1,4 +1,7 @@
+import { useSection } from '../context/ContentContext.jsx'
+
 export default function DetailCTA({ text = 'Ready to start a project like this?' }) {
+  const contact = useSection('contact')
   return (
     <section className="detail-cta">
       <div className="container detail-cta-inner">
@@ -8,7 +11,7 @@ export default function DetailCTA({ text = 'Ready to start a project like this?'
         </div>
         <div className="detail-cta-actions">
           <a href="#/contact" className="btn btn-primary btn-lg">Start a Project ↗</a>
-          <a href="mailto:hello@aqevorin.ai" className="btn btn-ghost btn-lg">Email Us</a>
+          <a href={'mailto:' + contact.email} className="btn btn-ghost btn-lg">Email Us</a>
         </div>
       </div>
     </section>

@@ -1,4 +1,4 @@
-import { socialLinks } from '../data/social.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export const socialIcons = {
   whatsapp: (
@@ -19,6 +19,7 @@ export const socialIcons = {
 }
 
 export default function SocialLinks({ className = 'social-links' }) {
+  const { socialLinks } = useSection('social')
   return (
     <div className={className}>
       {Object.entries(socialLinks).map(([key, { url, label }]) => (

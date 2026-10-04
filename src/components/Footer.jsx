@@ -1,6 +1,10 @@
 import SocialLinks from './SocialLinks.jsx'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function Footer() {
+  const contact = useSection('contact')
+  const { services } = useSection('services')
+  const footerServices = (services || []).slice(0, 5)
   return (
     <footer className="footer">
       <div className="container">
@@ -15,24 +19,22 @@ export default function Footer() {
           </div>
           <div className="footer-col">
             <h4>Services</h4>
-            <a href="#services">AI Consulting</a>
-            <a href="#services">Machine Learning</a>
-            <a href="#services">Graphic Design Agent</a>
-            <a href="#services">Digital Marketing Agent</a>
-            <a href="#services">Video Creation Agent</a>
+            {footerServices.map(s => (
+              <a href="#services" key={s.slug}>{s.title}</a>
+            ))}
           </div>
           <div className="footer-col">
             <h4>Company</h4>
             <a href="#home">Home</a>
             <a href="#portfolio">Portfolio</a>
             <a href="#blog">Blog</a>
-            <a href="#why">About Us</a>
+            <a href="#/about">About Us</a>
             <a href="#/contact">Contact</a>
           </div>
           <div className="footer-col">
             <h4>Contact</h4>
-            <a href="mailto:hello@aqevorin.ai">hello@aqevorin.ai</a>
-            <a href="tel:+919876543210">+91 98765 43210</a>
+            <a href={'mailto:' + contact.email}>{contact.email}</a>
+            <a href={'tel:' + contact.phone.replace(/\s/g, '')}>{contact.phone}</a>
             <span>India · Remote Worldwide</span>
             <a href="#/contact" className="footer-enquiry">Send a project enquiry →</a>
           </div>

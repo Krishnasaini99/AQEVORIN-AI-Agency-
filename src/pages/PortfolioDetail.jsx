@@ -1,9 +1,11 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
-import { getProjectBySlug, projects } from '../data/portfolio.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function PortfolioDetail({ slug }) {
-  const project = getProjectBySlug(slug)
+  const { projects } = useSection('portfolio')
+  const contact = useSection('contact')
+  const project = projects.find(p => p.slug === slug)
 
   if (!project) {
     return (
@@ -86,7 +88,7 @@ export default function PortfolioDetail({ slug }) {
               <h3>Want results like these?</h3>
               <p>Tell us your goal — we'll come back with a practical plan within 24 hours.</p>
               <a href="#/contact" className="btn btn-primary btn-full">Start a Project</a>
-              <a href="mailto:hello@aqevorin.ai" className="sidebar-link">hello@aqevorin.ai</a>
+              <a href={'mailto:' + contact.email} className="sidebar-link">{contact.email}</a>
             </div>
             <div className="sidebar-card">
               <h3>More work</h3>

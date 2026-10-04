@@ -1,9 +1,11 @@
 import DetailHero from '../components/DetailHero.jsx'
 import DetailCTA from '../components/DetailCTA.jsx'
-import { getServiceBySlug, services } from '../data/services.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function ServiceDetail({ slug }) {
-  const service = getServiceBySlug(slug)
+  const { services } = useSection('services')
+  const contact = useSection('contact')
+  const service = services.find(s => s.slug === slug)
 
   if (!service) {
     return (
@@ -70,8 +72,8 @@ export default function ServiceDetail({ slug }) {
               <h3>Get started</h3>
               <p>Tell us what you need — we'll reply within 24 hours with scope and next steps.</p>
               <a href="#/contact" className="btn btn-primary btn-full">Request a Consultation</a>
-              <a href="mailto:hello@aqevorin.ai" className="sidebar-link">hello@aqevorin.ai</a>
-              <a href="tel:+919876543210" className="sidebar-link">+91 98765 43210</a>
+              <a href={'mailto:' + contact.email} className="sidebar-link">{contact.email}</a>
+              <a href={'tel:' + contact.phone.replace(/\s/g, '')} className="sidebar-link">{contact.phone}</a>
             </div>
             <div className="sidebar-card">
               <h3>Related services</h3>

@@ -1,6 +1,7 @@
-import { projects } from '../data/portfolio.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 export default function Portfolio() {
+  const { projects } = useSection('portfolio')
   return (
     <section className="section" id="portfolio">
       <div className="container">

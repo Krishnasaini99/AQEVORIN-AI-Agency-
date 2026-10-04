@@ -1,4 +1,4 @@
-import { services } from '../data/services.js'
+import { useSection } from '../context/ContentContext.jsx'
 
 const icons = {
   'ai-consulting': <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a7 7 0 0 1 7 7c0 2.4-1.2 4.5-3 5.7V17a1 1 0 0 1-1 1h-6a1 1 0 0 1-1-1v-2.3C6.2 13.5 5 11.4 5 9a7 7 0 0 1 7-7z"/><path d="M9 21h6"/></svg>,
@@ -15,6 +15,7 @@ const icons = {
 const accentSlugs = new Set(['graphic-design-agent', 'digital-marketing-agent', 'video-creation-agent'])
 
 export default function Services() {
+  const { services } = useSection('services')
   return (
     <section className="section" id="services">
       <div className="container">
