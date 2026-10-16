@@ -1094,12 +1094,12 @@ a.card-link:focus-visible {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
 }
-.detail-image img { width: 100%; height: auto; max-height: 72vh; object-fit: contain; background: #0b0b18; display: block; }
+.detail-image img { width: 100%; height: auto; object-fit: contain; background: #0b0b18; display: block; }
 /* Detail pages reuse the card thumbs as hero banners — show the full image */
 .detail-project-thumb,
 .detail-article-thumb { height: auto; min-height: 0; }
 .detail-project-thumb img,
-.detail-article-thumb img { position: static; width: 100%; height: auto; max-height: 72vh; object-fit: contain; background: #0b0b18; }
+.detail-article-thumb img { position: static; width: 100%; height: auto; object-fit: contain; background: #0b0b18; }
 .detail-article-thumb, .detail-project-thumb {
   border-radius: var(--radius-lg);
   border: 1px solid var(--border);
@@ -1356,7 +1356,6 @@ a.card-link:focus-visible {
   .result-value { font-size: 1.4rem; }
   .detail-cta-actions { flex-direction: column; width: 100%; }
   .detail-cta-actions .btn { width: 100%; }
-  .detail-image img, .detail-project-thumb img, .detail-article-thumb img { max-height: 52vh; }
 }
 
 /* ---------- Footer ---------- */
