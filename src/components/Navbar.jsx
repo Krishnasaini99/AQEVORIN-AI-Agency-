@@ -23,18 +23,45 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    const ids = ['home', 'services', 'portfolio', 'blog', 'contact']
-    const sections = ids.map(id => document.getElementById(id)).filter(Boolean)
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
-      },
-      { rootMargin: '-40% 0px -55% 0px' }
-    )
-    sections.forEach(s => observer.observe(s))
-    return () => observer.disconnect()
+    let raf = 0
+    const compute = () => {
+      cancelAnimationFrame(raf)
+      raf = requestAnimationFrame(() => {
+        const hash = window.location.hash
+        // Detail / standalone routes — highlight the matching parent item
+        if (hash.startsWith('#/')) {
+          const parts = hash.slice(2).split('/')
+          const seg = parts[0]
+          if (seg === '' || seg === 'home') {
+            // fall through to home scroll-spy below
+          } else if (seg === 'about') { setActive('/about'); return }
+          else if (seg === 'contact') { setActive('/contact'); return }
+          else if (seg === 'services' && parts[1]) { setActive('services'); return }
+          else if (seg === 'blog' && parts[1]) { setActive('blog'); return }
+          else if (seg === 'portfolio' && parts[1]) { setActive('portfolio'); return }
+          else if (seg === 'services' || seg === 'blog' || seg === 'portfolio') {
+            // bare section slugs without detail — home page, use scroll-spy
+          } else { setActive(''); return }
+        }
+        // Home page — scroll-spy by section positions (ignores the wrapping <main>)
+        const ids = ['services', 'portfolio', 'blog', 'contact']
+        const y = window.scrollY + 160
+        let current = 'home'
+        for (const id of ids) {
+          const el = document.getElementById(id)
+          if (el && el.offsetTop <= y) current = id
+        }
+        setActive(current)
+      })
+    }
+    compute()
+    window.addEventListener('scroll', compute, { passive: true })
+    window.addEventListener('hashchange', compute)
+    return () => {
+      cancelAnimationFrame(raf)
+      window.removeEventListener('scroll', compute)
+      window.removeEventListener('hashchange', compute)
+    }
   }, [])
 
   return (
@@ -66,7 +93,7 @@ export default function Navbar() {
               <svg className="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             )}
           </button>
-          <a href="#/contact" className="btn btn-outline">Login</a>
+          <a href="#/admin" className="btn btn-outline">Login</a>
           <a href="#/contact" className="btn btn-primary nav-cta">Get Free Consultation</a>
           <button
             className={`hamburger ${menuOpen ? 'active' : ''}`}

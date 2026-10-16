@@ -28,16 +28,30 @@ export default function WhyUs() {
           <div className="code-card">
             <div className="code-dots"><span></span><span></span><span></span></div>
             <pre><code><span className="c-k">const</span> <span className="c-f">growth</span> = <span className="c-k">await</span> aqevorin.<span className="c-f">launch</span>({'{'}
-  ai: <span className="c-s">"production-grade"</span>,
-  design: <span className="c-s">"all-types"</span>,
-  marketing: <span className="c-s">"data-driven"</span>,
-  video: <span className="c-s">"cinematic"</span>
-{'}'});
-
-growth.<span className="c-f">scale</span>({'{'} globally: <span className="c-k">true</span> {'}'});</code></pre>
+{'\n'}  ai: <span className="c-s">"production-grade"</span>,
+{'\n'}  design: <span className="c-s">"all-types"</span>,
+{'\n'}  marketing: <span className="c-s">"data-driven"</span>,
+{'\n'}  video: <span className="c-s">"cinematic"</span>
+{'\n'}{'}'});
+{'\n'}
+{'\n'}growth.<span className="c-f">scale</span>({'{'} globally: <span className="c-k">true</span> {'}'});</code></pre>
+            <div className="float-chip chip-1">97.2% Accuracy</div>
+            <div className="float-chip chip-2">Deployed to prod</div>
           </div>
-          <div className="float-chip chip-1">97.2% Accuracy</div>
-          <div className="float-chip chip-2">Deployed to prod</div>
+          <div className="why-mini-grid">
+            <div className="why-mini-card">
+              <span className="why-mini-value">24h</span>
+              <span className="why-mini-label">Response time</span>
+            </div>
+            <div className="why-mini-card">
+              <span className="why-mini-value">120+</span>
+              <span className="why-mini-label">Projects delivered</span>
+            </div>
+            <div className="why-mini-card">
+              <span className="why-mini-value">95%</span>
+              <span className="why-mini-label">Client retention</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
