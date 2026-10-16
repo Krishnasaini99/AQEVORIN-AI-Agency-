@@ -109,6 +109,18 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://aqevorin.ai/#/services/website-development</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aqevorin.ai/#/services/mobile-app-development</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://aqevorin.ai/#/blog/why-ai-pilots-fail-after-90-days</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
@@ -158,6 +170,18 @@
   </url>
   <url>
     <loc>https://aqevorin.ai/#/portfolio/stratos-document-pipeline</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aqevorin.ai/#/portfolio/business-website-demo</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://aqevorin.ai/#/portfolio/food-delivery-app-demo</loc>
     <lastmod>2026-10-04</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
