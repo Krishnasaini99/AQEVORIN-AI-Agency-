@@ -42,8 +42,8 @@ export default function Footer() {
         <div className="footer-bottom">
           <p>&copy; 2026 AQEVORIN AI Agency. All rights reserved.</p>
           <div className="footer-legal">
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
+            <a href="#/privacy">Privacy Policy</a>
+            <a href="#/terms">Terms of Service</a>
           </div>
         </div>
       </div>

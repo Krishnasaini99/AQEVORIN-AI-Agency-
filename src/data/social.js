@@ -14,4 +14,12 @@ export const socialLinks = {
     url: 'https://www.facebook.com/aqevorin',
     label: 'Facebook',
   },
+  linkedin: {
+    url: 'https://www.linkedin.com/company/aqevorin',
+    label: 'LinkedIn',
+  },
+  x: {
+    url: 'https://x.com/aqevorin',
+    label: 'X (Twitter)',
+  },
 }

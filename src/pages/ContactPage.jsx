@@ -71,6 +71,7 @@ export default function ContactPage() {
   const [details, setDetails] = useState({ name: '', email: '', phone: '', company: '', message: '' })
   const [note, setNote] = useState('')
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
 
   const setAnswer = (key, val) => setAnswers(a => ({ ...a, [key]: val }))
 
@@ -84,7 +85,7 @@ export default function ContactPage() {
     window.scrollTo({ top: 200, behavior: 'smooth' })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
     if (!details.name.trim() || !details.email.trim() || !details.message.trim()) {
       setNote('Please fill in name, email, and project details.')
@@ -95,8 +96,17 @@ export default function ContactPage() {
       return
     }
     setNote('')
-    setSent(true)
-    window.scrollTo({ top: 200, behavior: 'smooth' })
+    setSending(true)
+    try {
+      const { submitLead } = await import('../lib/fbrest.js')
+      await submitLead({ ...details, ...answers })
+      setSent(true)
+      window.scrollTo({ top: 200, behavior: 'smooth' })
+    } catch (err) {
+      setNote(err.message || 'Could not send. Please try WhatsApp instead.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -179,7 +189,7 @@ export default function ContactPage() {
                 {note && <p className="form-note form-note-error" role="alert">{note}</p>}
                 <div className="form-actions">
                   <button type="button" className="btn btn-ghost" onClick={() => setStep(1)}>← Back</button>
-                  <button type="submit" className="btn btn-primary btn-lg btn-grow">Submit Requirement</button>
+                  <button type="submit" className="btn btn-primary btn-lg btn-grow" disabled={sending}>{sending ? 'Sending…' : 'Submit Requirement'}</button>
                 </div>
               </form>
             )}

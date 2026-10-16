@@ -169,6 +169,47 @@ export async function getFreshIdToken() {
   return s.idToken
 }
 
+/* ---------- Leads (contact form) ---------- */
+
+const LEADS_URL = `https://firestore.googleapis.com/v1/projects/${PROJECT_ID}/databases/(default)/documents/leads`
+
+/** Public: submit a contact-form lead. */
+export async function submitLead(data) {
+  const r = await fetch(`${LEADS_URL}?key=${API_KEY}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      fields: encodeFields({ ...data, createdAt: new Date().toISOString() }),
+    }),
+  })
+  if (!r.ok) throw new Error('Could not send — please try WhatsApp instead.')
+  return true
+}
+
+/** Admin: list all leads (newest first). */
+export async function fetchLeads() {
+  const token = await getFreshIdToken()
+  if (!token) throw new Error('Not logged in.')
+  const r = await fetch(`${LEADS_URL}?key=${API_KEY}&pageSize=100&orderBy=createdAt%20desc`, {
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  if (!r.ok) throw new Error(`Could not load leads (${r.status})`)
+  const j = await r.json()
+  return (j.documents || []).map(d => ({ id: d.name.split('/').pop(), ...decodeFields(d.fields) }))
+}
+
+/** Admin: delete one lead. */
+export async function deleteLead(id) {
+  const token = await getFreshIdToken()
+  if (!token) throw new Error('Not logged in.')
+  const r = await fetch(`${LEADS_URL}/${id}?key=${API_KEY}`, {
+    method: 'DELETE',
+    headers: { Authorization: `Bearer ${token}` },
+  })
+  if (!r.ok) throw new Error(`Delete failed (${r.status})`)
+  return true
+}
+
 /* ---------- Storage uploads (admin) ---------- */
 
 /** Uploads a File/Blob to Storage and returns a public download URL. */

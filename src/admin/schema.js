@@ -35,6 +35,21 @@ export const ADMIN_SECTIONS = [
       { key: 'cta.primary.href', label: 'CTA primary link', type: 'text' },
       { key: 'cta.secondary.label', label: 'CTA secondary button', type: 'text' },
       { key: 'cta.secondary.href', label: 'CTA secondary link', type: 'text' },
+      {
+        key: 'testimonials', label: 'Testimonials', type: 'list', itemLabel: 'name',
+        itemFields: [
+          { key: 'quote', label: 'Quote', type: 'textarea' },
+          { key: 'name', label: 'Name', type: 'text' },
+          { key: 'role', label: 'Role / company', type: 'text' },
+        ],
+      },
+      {
+        key: 'faq', label: 'FAQ', type: 'list', itemLabel: 'q',
+        itemFields: [
+          { key: 'q', label: 'Question', type: 'text' },
+          { key: 'a', label: 'Answer', type: 'textarea' },
+        ],
+      },
     ],
   },
 
@@ -214,6 +229,10 @@ export const ADMIN_SECTIONS = [
       { key: 'instagram.label', label: 'Instagram label', type: 'text' },
       { key: 'facebook.url', label: 'Facebook link', type: 'text' },
       { key: 'facebook.label', label: 'Facebook label', type: 'text' },
+      { key: 'linkedin.url', label: 'LinkedIn link', type: 'text' },
+      { key: 'linkedin.label', label: 'LinkedIn label', type: 'text' },
+      { key: 'x.url', label: 'X (Twitter) link', type: 'text' },
+      { key: 'x.label', label: 'X (Twitter) label', type: 'text' },
     ],
   },
 ]

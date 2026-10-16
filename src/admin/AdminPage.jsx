@@ -1,9 +1,11 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { ADMIN_SECTIONS } from './schema.js'
 import { useContent } from '../context/ContentContext.jsx'
 import {
   ADMIN_EMAIL,
   clearSession,
+  deleteLead,
+  fetchLeads,
   getFreshIdToken,
   loadSession,
   saveDoc,
@@ -247,6 +249,90 @@ function LoginForm({ onDone }) {
   )
 }
 
+/* ---------- leads inbox ---------- */
+
+function LeadsView() {
+  const [leads, setLeads] = useState(null)
+  const [error, setError] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  async function load() {
+    setBusy(true)
+    setError('')
+    try {
+      setLeads(await fetchLeads())
+    } catch (err) {
+      setError(err.message || 'Could not load leads')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  useEffect(() => { load() }, [])
+
+  async function remove(id) {
+    if (!window.confirm('Delete this lead?')) return
+    try {
+      await deleteLead(id)
+      setLeads(ls => ls.filter(l => l.id !== id))
+    } catch (err) {
+      setError(err.message || 'Delete failed')
+    }
+  }
+
+  if (leads === null) {
+    return (
+      <>
+        {error && <div className="admin-error-box">{error}</div>}
+        <p className="admin-empty">{busy ? 'Loading leads…' : ''}</p>
+        {!busy && error && <button className="admin-ghost-btn" onClick={load}>Retry</button>}
+      </>
+    )
+  }
+
+  if (!leads.length) {
+    return (
+      <>
+        <div className="admin-success-box">Inbox zero — no leads yet. Share your contact page to get enquiries here.</div>
+        <button className="admin-ghost-btn" onClick={load}>Refresh</button>
+      </>
+    )
+  }
+
+  return (
+    <>
+      {error && <div className="admin-error-box">{error}</div>}
+      <button className="admin-ghost-btn" onClick={load} style={{ marginBottom: 14 }}>Refresh ({leads.length})</button>
+      <div className="admin-leads">
+        {leads.map(l => (
+          <div className="admin-lead-card" key={l.id}>
+            <div className="admin-lead-head">
+              <div>
+                <strong>{l.name || '—'}</strong>
+                <span className="admin-lead-date">{l.createdAt ? new Date(l.createdAt).toLocaleString() : ''}</span>
+              </div>
+              <button className="admin-danger-btn" onClick={() => remove(l.id)}>Delete</button>
+            </div>
+            <div className="admin-lead-meta">
+              {l.email && <a href={`mailto:${l.email}`}>{l.email}</a>}
+              {l.phone && <a href={`tel:${l.phone}`}>{l.phone}</a>}
+              {l.company && <span>{l.company}</span>}
+            </div>
+            {(l.service || l.budget || l.timeline || l.stage) && (
+              <div className="admin-lead-tags">
+                {[l.service, l.stage, l.budget, l.timeline].filter(Boolean).map((t, i) => (
+                  <span key={i} className="admin-lead-tag">{t}</span>
+                ))}
+              </div>
+            )}
+            {l.message && <p className="admin-lead-msg">{l.message}</p>}
+          </div>
+        ))}
+      </div>
+    </>
+  )
+}
+
 /* ---------- main page ---------- */
 
 export default function AdminPage() {
@@ -352,8 +438,25 @@ export default function AdminPage() {
               {s.label}
             </button>
           ))}
+          <button
+            className={tab === 'leads' ? 'admin-tab active admin-tab-leads' : 'admin-tab admin-tab-leads'}
+            onClick={() => { setTab('leads'); setDirty(false) }}
+          >
+            📥 Leads
+          </button>
         </nav>
 
+        {tab === 'leads' ? (
+          <section className="admin-editor">
+            <div className="admin-editor-head">
+              <div>
+                <h1>Leads</h1>
+                <p>Contact-form enquiries from your website</p>
+              </div>
+            </div>
+            <LeadsView />
+          </section>
+        ) : (
         <section className="admin-editor">
           <div className="admin-editor-head">
             <div>
@@ -401,6 +504,7 @@ export default function AdminPage() {
             </div>
           )}
         </section>
+        )}
       </div>
     </main>
   )

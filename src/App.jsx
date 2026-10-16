@@ -6,6 +6,8 @@ import Services from './components/Services.jsx'
 import WhyUs from './components/WhyUs.jsx'
 import Portfolio from './components/Portfolio.jsx'
 import Blog from './components/Blog.jsx'
+import Testimonials from './components/Testimonials.jsx'
+import Faq from './components/Faq.jsx'
 import CTA from './components/CTA.jsx'
 import Footer from './components/Footer.jsx'
 import SocialFab from './components/SocialFab.jsx'
@@ -14,6 +16,8 @@ import AboutPage from './pages/AboutPage.jsx'
 import ServiceDetail from './pages/ServiceDetail.jsx'
 import BlogDetail from './pages/BlogDetail.jsx'
 import PortfolioDetail from './pages/PortfolioDetail.jsx'
+import PrivacyPage from './pages/PrivacyPage.jsx'
+import TermsPage from './pages/TermsPage.jsx'
 import AdminPage from './admin/AdminPage.jsx'
 import './admin/admin.css'
 
@@ -21,6 +25,8 @@ function parseRoute() {
   const hash = window.location.hash
   if (!hash || hash === '#' || hash === '#home') return { name: 'home' }
   if (hash === '#/admin') return { name: 'admin' }
+  if (hash === '#/privacy') return { name: 'privacy' }
+  if (hash === '#/terms') return { name: 'terms' }
   if (hash === '#/contact') return { name: 'contact' }
   if (hash === '#/about') return { name: 'about' }
 
@@ -73,6 +79,10 @@ export default function App() {
     page = <BlogDetail slug={route.slug} />
   } else if (route.name === 'portfolio') {
     page = <PortfolioDetail slug={route.slug} />
+  } else if (route.name === 'privacy') {
+    page = <PrivacyPage />
+  } else if (route.name === 'terms') {
+    page = <TermsPage />
   } else {
     page = (
       <main id="home">
@@ -82,6 +92,8 @@ export default function App() {
         <WhyUs />
         <Portfolio />
         <Blog />
+        <Testimonials />
+        <Faq />
         <CTA />
       </main>
     )
