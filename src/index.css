@@ -624,7 +624,8 @@ button { font-family: inherit; }
   box-shadow: var(--shadow);
 }
 .portfolio-thumb {
-  height: 190px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   position: relative;
   display: grid;
   place-items: start end;
@@ -664,6 +665,10 @@ button { font-family: inherit; }
 }
 .portfolio-body p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
 .portfolio-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+/* Keep card bodies equal height and pin the link to the bottom-aligned row */
+.portfolio-card { display: flex; flex-direction: column; }
+.portfolio-body { display: flex; flex-direction: column; flex: 1; }
+.portfolio-link { margin-top: auto; }
 .portfolio-tags span {
   padding: 4px 12px;
   border-radius: 50px;
@@ -695,7 +700,8 @@ button { font-family: inherit; }
   box-shadow: var(--shadow);
 }
 .blog-thumb {
-  height: 170px;
+  height: auto;
+  aspect-ratio: 16 / 9;
   position: relative;
 }
 .blog-thumb::after {
@@ -1097,7 +1103,7 @@ a.card-link:focus-visible {
 .detail-image img { width: 100%; height: auto; object-fit: contain; background: #0b0b18; display: block; }
 /* Detail pages reuse the card thumbs as hero banners — show the full image */
 .detail-project-thumb,
-.detail-article-thumb { height: auto; min-height: 0; }
+.detail-article-thumb { height: auto; min-height: 0; padding: 0; display: block; }
 .detail-project-thumb img,
 .detail-article-thumb img { position: static; width: 100%; height: auto; object-fit: contain; background: #0b0b18; }
 .detail-article-thumb, .detail-project-thumb {
@@ -1105,6 +1111,8 @@ a.card-link:focus-visible {
   border: 1px solid var(--border);
   overflow: hidden;
 }
+.detail-project-thumb::after,
+.detail-article-thumb::after { display: none; }
 
 /* Layout: content + sidebar */
 .detail-layout {
