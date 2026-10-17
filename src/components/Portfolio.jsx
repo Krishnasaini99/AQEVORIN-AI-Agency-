@@ -19,6 +19,7 @@ export default function Portfolio() {
               aria-label={`View case study: ${p.title}`}
             >
               <div className={`portfolio-thumb ${p.thumb}`}>
+                <img src={p.img} alt="" aria-hidden="true" className="thumb-ambient" loading="lazy" />
                 <img src={p.img} alt={p.title} loading="lazy" />
                 <span className="portfolio-cat">{p.cat}</span>
               </div>

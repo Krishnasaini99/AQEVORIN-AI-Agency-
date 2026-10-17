@@ -34,7 +34,10 @@ export default function Services() {
               key={s.slug}
               aria-label={`${s.title} - learn more`}
             >
-              <div className="service-thumb"><img src={s.img} alt={s.title} loading="lazy" /></div>
+              <div className="service-thumb">
+                <img src={s.img} alt="" aria-hidden="true" className="thumb-ambient" loading="lazy" />
+                <img src={s.img} alt={s.title} loading="lazy" />
+              </div>
               <div className="service-icon">{icons[s.slug]}</div>
               <h3>{s.title}</h3>
               <p>{s.tagline}</p>

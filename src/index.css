@@ -475,6 +475,7 @@ button { font-family: inherit; }
 }
 .service-card-accent:hover { border-color: var(--accent-purple); }
 .service-thumb {
+  position: relative;
   overflow: hidden;
   margin-bottom: 22px;
   border-bottom: 1px solid var(--border);
@@ -483,7 +484,8 @@ button { font-family: inherit; }
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: contain;
-  background: var(--bg-alt);
+  position: relative;
+  z-index: 1;
   display: block;
   transition: transform 0.5s ease;
 }
@@ -1030,7 +1032,7 @@ a.card-link:focus-visible {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  z-index: 0;
+  z-index: 1;
   transition: transform 0.5s ease;
 }
 .portfolio-card:hover .portfolio-thumb img,
@@ -1041,6 +1043,30 @@ a.card-link:focus-visible {
 .portfolio-thumb,
 .blog-thumb {
   background: var(--gradient);
+}
+
+/* Ambient fill: blurred cover layer behind contain-fit artwork — no blank
+   bands for non-16:9 uploads, no crop either */
+.thumb-ambient {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(26px) saturate(1.3) brightness(0.8);
+  opacity: 0.65;
+  z-index: 0;
+  pointer-events: none;
+}
+.service-thumb .thumb-ambient,
+.portfolio-thumb .thumb-ambient,
+.blog-thumb .thumb-ambient {
+  position: absolute;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: none;
 }
 
 /* ---------- Detail Pages ---------- */

@@ -19,6 +19,7 @@ export default function Blog() {
               aria-label={`Read article: ${p.title}`}
             >
               <div className={`blog-thumb ${p.thumb}`}>
+                <img src={p.img} alt="" aria-hidden="true" className="thumb-ambient" loading="lazy" />
                 <img src={p.img} alt={p.title} loading="lazy" />
                 <span className="blog-cat">{p.cat}</span>
               </div>
