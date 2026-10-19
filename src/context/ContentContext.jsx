@@ -55,6 +55,15 @@ export function ContentProvider({ children }) {
     setStatus(s => (s === 'live' ? s : 'loading'))
     try {
       const docs = await fetchAllDocs(DOC_IDS)
+      // Normalize social: flat keys (whatsapp/instagram/…) override the socialLinks map
+      if (docs.social) {
+        const s = { ...docs.social }
+        s.socialLinks = { ...(s.socialLinks || {}) }
+        for (const key of ['whatsapp', 'instagram', 'facebook', 'linkedin', 'x']) {
+          if (s[key] && typeof s[key] === 'object') s.socialLinks[key] = { ...(s.socialLinks[key] || {}), ...s[key] }
+        }
+        docs.social = s
+      }
       if (Object.keys(docs).length === 0) {
         // No CMS data yet (or network blocked) — local defaults are already in state
         setStatus('offline')
