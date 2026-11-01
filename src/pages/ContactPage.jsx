@@ -59,6 +59,9 @@ function ChoiceGroup({ label, number, options, value, onChange }) {
 }
 
 export default function ContactPage() {
+  // Email notifications: change this address to receive lead alerts on another Gmail.
+  // (First-ever submission sends a one-time "Activate" email from FormSubmit — click it once.)
+  const LEAD_ALERT_EMAIL = 'krishnasaini172123@gmail.com'
   const contact = useSection('contact')
   const contactHero = contact.hero || {}
   usePageSeo({
@@ -102,6 +105,28 @@ export default function ContactPage() {
       await submitLead({ ...details, ...answers })
       setSent(true)
       window.scrollTo({ top: 200, behavior: 'smooth' })
+      // Fire-and-forget email alert (never blocks the thank-you screen; lead is already saved in Firestore)
+      fetch('https://formsubmit.co/ajax/' + LEAD_ALERT_EMAIL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          _subject: `🔔 New AQEVORIN Lead — ${details.name} — ${answers.service}`,
+          _template: 'table',
+          _captcha: 'false',
+          _replyto: details.email,
+          _honey: '',
+          '🌐 Source': 'Website contact form (aqevorin.ai)',
+          'Client Name': details.name,
+          'Client Email': details.email,
+          'Phone': details.phone || '—',
+          'Company': details.company || '—',
+          'Service': answers.service,
+          'Stage': answers.stage,
+          'Budget': answers.budget,
+          'Timeline': answers.timeline,
+          'Message': details.message,
+        }),
+      }).catch(() => {})
     } catch (err) {
       setNote(err.message || 'Could not send. Please try WhatsApp instead.')
     } finally {
