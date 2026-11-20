@@ -25,7 +25,7 @@ export default function TermsPage() {
             <h2>5. Confidentiality</h2>
             <p>Everything you share with us — data, ideas, documents — stays confidential and is never reused for other clients.</p>
             <h2>6. Contact</h2>
-            <p>Questions about these terms? Email <a href="mailto:hello@aqevorin.ai">hello@aqevorin.ai</a>.</p>
+            <p>Questions about these terms? Email <a href="mailto:krishnasaini172123@gmail.com">krishnasaini172123@gmail.com</a>.</p>
           </div>
         </div>
       </section>

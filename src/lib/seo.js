@@ -3,7 +3,7 @@
 // so no cleanup is needed on unmount.
 import { useEffect } from 'react'
 
-const SITE = 'https://aqevorin.ai'
+const SITE = 'https://aqevorin-ai-agency-website.web.app'
 
 export function usePageSeo({ title, description, path }) {
   useEffect(() => {

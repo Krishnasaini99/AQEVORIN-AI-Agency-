@@ -19,7 +19,7 @@ export const home = {
     heading: 'Ready to Move Your Business Forward?',
     text: "Whether it's AI, design, marketing, or video — share your requirement in simple words and we'll suggest the most practical next step.",
     primary: { label: 'Start a Project →', href: '#/contact' },
-    secondary: { label: 'Contact Sales', href: 'mailto:hello@aqevorin.ai' },
+    secondary: { label: 'Contact Sales', href: 'mailto:krishnasaini172123@gmail.com' },
   },
   testimonials: [
     {

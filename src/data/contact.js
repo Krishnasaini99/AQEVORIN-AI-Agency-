@@ -1,6 +1,6 @@
 // Contact page content — editable from the admin panel (#/admin → Contact)
 export const contact = {
-  email: 'hello@aqevorin.ai',
+  email: 'krishnasaini172123@gmail.com',
   phone: '+91 98765 43210',
   hero: {
     tag: 'Start a Project',

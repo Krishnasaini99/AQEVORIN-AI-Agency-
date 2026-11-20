@@ -12,7 +12,7 @@ export default function CTA() {
           </div>
           <div className="cta-actions">
             <a href={cta.primary?.href || '#/contact'} className="btn btn-primary btn-lg">{cta.primary?.label}</a>
-            <a href={cta.secondary?.href || 'mailto:hello@aqevorin.ai'} className="btn btn-ghost btn-lg">{cta.secondary?.label}</a>
+            <a href={cta.secondary?.href || 'mailto:krishnasaini172123@gmail.com'} className="btn btn-ghost btn-lg">{cta.secondary?.label}</a>
           </div>
         </div>
       </div>
