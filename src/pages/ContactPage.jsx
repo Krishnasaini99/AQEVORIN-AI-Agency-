@@ -10,6 +10,8 @@ const serviceOptions = [
   'Generative AI & LLMs',
   'AI Automation',
   'Managed AI Services',
+  'Website Development',
+  'Mobile App Development',
   'Graphic Design Agent (All Types)',
   'Digital Marketing Agent (All Types)',
   'Video Creation Agent (All Types)',
